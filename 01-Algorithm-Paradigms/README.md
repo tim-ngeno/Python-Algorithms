@@ -1,1 +1,1 @@
-Python Algorithms
+# Algorithm paradigms
