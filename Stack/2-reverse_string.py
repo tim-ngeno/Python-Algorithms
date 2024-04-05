@@ -4,7 +4,14 @@
 Stack = __import__('0-stack').Stack
 
 
-def reverse_string(stack, input_string):
+def reverse_string(stack, input_string: str) -> str:
+    """
+    Reverse a string using the stack algorithm
+
+    Args:
+        stack (Stack): An instance of the stack class
+        input_string (str): The input string to be reversed
+    """
     rev_str = ""
     for i in input_string:
         stack.push(i)
