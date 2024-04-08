@@ -45,19 +45,29 @@ class LinkedList:
         last_node.next = new_node
 
     def prepend(self, data):
-        """ Adds a new node to the beginning og the list """
+        """ Adds a new node to the beginning of the list """
         new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
+
+    def insert_after_node(self, prev_node, data):
+        """ Inserts a new node after the specified prev_node """
+        if not prev_node:
+            print('Previous node does not exist')
+            return
+        new_node = Node(data)
+        new_node.next = prev_node.next
+        prev_node.next = new_node
 
 
 llist = LinkedList()
 llist.append("A")
 llist.append("B")
 llist.append("C")
+llist.append("E")
 
 llist.prepend("D")
 
-llist.append("E")
+llist.insert_after_node(llist.head.next, "A")
 
 llist.print_list()
