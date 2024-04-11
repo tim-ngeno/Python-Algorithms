@@ -59,6 +59,29 @@ class LinkedList:
         new_node.next = prev_node.next
         prev_node.next = new_node
 
+    def delete_node(self, key):
+        """ Deletes a node based on the value of the data """
+        # Case if node is head:
+        curr_node = self.head
+        if curr_node and curr_node.data = key:
+            self.head = curr_node.next
+            curr_node = None
+            return
+        # If node is not head
+        # We need to keep track of the previous node
+        prev = None
+        while curr_node and curr_node.data != key:
+            prev = curr_node
+            curr_node = curr_node.next
+
+        # Handle case where the node doesn't exist
+        if curr_node is None:
+            return
+
+        # Delete curr_node
+        prev.next = curr_node.next
+        curr_node = None
+
 
 llist = LinkedList()
 llist.append("A")
@@ -66,8 +89,14 @@ llist.append("B")
 llist.append("C")
 llist.append("E")
 
+# Prepend a node
 llist.prepend("D")
 
+# Insert a node at a specific position
 llist.insert_after_node(llist.head.next, "A")
+
+# Delete a node
+llist.delete_node("B")
+llist.delete_node("E")
 
 llist.print_list()
