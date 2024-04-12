@@ -29,6 +29,15 @@ class LinkedList:
             print(curr_node.data)
             curr_node = curr_node.next
 
+    def find_len(self):
+        """ Calculates the length of a linked list """
+        count = 0
+        curr_node = self.head
+        while curr_node:
+            count += 1
+            curr_node = curr_node.next
+        return count
+
     def append(self, data):
         """ Inserts a new node to the end of the linked list """
         new_node = Node(data)
@@ -63,7 +72,7 @@ class LinkedList:
         """ Deletes a node based on the value of the data """
         # Case if node is head:
         curr_node = self.head
-        if curr_node and curr_node.data = key:
+        if curr_node and curr_node.data == key:
             self.head = curr_node.next
             curr_node = None
             return
@@ -107,6 +116,7 @@ llist.append("A")
 llist.append("B")
 llist.append("C")
 llist.append("E")
+print(f'The length of the linked list: {llist.find_len()}')
 
 # Prepend a node
 llist.prepend("D")
@@ -122,3 +132,4 @@ llist.delete_node("E")
 llist.delete_node_at_pos(0)
 
 llist.print_list()
+print(f'The length of the linked list: {llist.find_len()}')
