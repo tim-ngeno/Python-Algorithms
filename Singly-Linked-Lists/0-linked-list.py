@@ -110,13 +110,50 @@ class LinkedList:
             if curr_node is None:
                 return
 
+    def swap_nodes(self, key1, key2):
+        """ Swaps two nodes' positions in the linked list """
+        if key1 == key2:
+            return
+
+        prev = None
+        curr = self.head
+        while curr and curr.data != key1:
+            prev = curr
+            curr = curr.next
+
+        prev_2 = None
+        curr_2 = self.head
+        while curr_2 and curr_2.data != key2:
+            prev_2 = curr_2
+            curr_2 = curr_2.next
+
+        if not curr or not curr_2:
+            return
+
+        if prev:
+            prev.next = curr_2
+        else:
+            self.head = curr_2
+
+        if prev_2:
+            prev_2.next = curr
+        else:
+            self.head = curr
+
+        curr.next, curr_2.next = curr_2.next, curr.next
+
 
 llist = LinkedList()
 llist.append("A")
 llist.append("B")
 llist.append("C")
+llist.append("D")
 llist.append("E")
 print(f'The length of the linked list: {llist.find_len()}')
+
+llist.swap_nodes("B", "C")
+print("Swapping nodes B and C that are not head nodes")
+llist.print_list()
 
 # Prepend a node
 llist.prepend("D")
