@@ -30,13 +30,19 @@ class LinkedList:
             curr_node = curr_node.next
 
     def find_len(self):
-        """ Calculates the length of a linked list """
+        """ Calculates the length of a linked list iteratively """
         count = 0
         curr_node = self.head
         while curr_node:
             count += 1
             curr_node = curr_node.next
         return count
+
+    def find_len_recursive(self, node):
+        """ Calculates the length of a linked list recursively """
+        if node is None:
+            return 0
+        return 1 + self.find_len_recursive(node.next)
 
     def append(self, data):
         """ Inserts a new node to the end of the linked list """
@@ -142,6 +148,19 @@ class LinkedList:
 
         curr.next, curr_2.next = curr_2.next, curr.next
 
+    def reverse(self):
+        """ Reverses the order of a linked list """
+        def _reverse_recursive(curr, prev):
+            """ Helper function to reverse the linked list """
+            if not curr:
+                return prev
+            nxt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nxt
+            return _reverse_recursive(curr, prev)
+        self.head = _reverse_recursive(curr=self.head, prev=None)
+
 
 llist = LinkedList()
 llist.append("A")
@@ -160,6 +179,13 @@ llist.prepend("D")
 
 # Insert a node at a specific position
 llist.insert_after_node(llist.head.next, "A")
+
+
+# Reverse a linked list
+print("Current linked list:")
+llist.print_list()
+print("Reversed list: ")
+llist.reverse()
 
 # Delete a node
 llist.delete_node("B")
